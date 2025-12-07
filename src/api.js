@@ -1,5 +1,5 @@
 // src/api.js
-const BASE_URL = 'https://pokeapi.co/api/v2';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const fetchPokemonList = async (limit = 20, offset = 0) => {
   const response = await fetch(`${BASE_URL}/pokemon?limit=${limit}&offset=${offset}`);
@@ -28,7 +28,7 @@ export const fetchTypes = async () => {
 
 // NEW: Fetch all pokemon names for "Regex-like" search
 export const fetchAllPokemonNames = async () => {
-  const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=2000');
+  const response = await fetch(`${BASE_URL}/pokemon?limit=2000`);
   const data = await response.json();
   return data.results; // Returns array of { name, url }
 };

@@ -1,6 +1,6 @@
 // src/components/Footer.jsx
 import React from 'react';
-import { Heart, Github, Linkedin } from 'lucide-react'; // Optional social icons
+import { Heart, Github, Linkedin } from 'lucide-react';
 
 const Footer = () => {
   return (

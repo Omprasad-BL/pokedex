@@ -10,7 +10,6 @@ const Login = () => {
   if (user) return <Navigate to="/pokedex" replace />;
 
   return (
-    // CHANGE: from red gradient to "Deep Slate/Indigo"
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 flex flex-col items-center justify-center p-4 text-white overflow-hidden relative">
       
       {/* Background Decor */}

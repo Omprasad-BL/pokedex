@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Pagination from '../components/Pagination';
 import PokemonCard from '../components/PokemonCard';
 import PokemonModal from '../components/PokemonModal';
-import { FavoritesProvider, useFavorites } from '../context/FavoritesContext';
+import { useFavorites } from '../context/FavoritesContext';
 import { fetchPokemonList, fetchPokemonByType, fetchTypes, fetchAllPokemonNames } from '../api';
 import { AnimatePresence } from 'framer-motion';
 import Footer from '../components/Footer';
@@ -57,42 +57,6 @@ const Pokedex = () => {
     setLoading(false);
   };
 
-  // 3. Handle Filters (Smart Sorting Added)
-  // useEffect(() => {
-  //   if (searchTerm || selectedType) {
-  //     setShowFavorites(false); // Auto-exit favorites
-      
-  //     if (searchTerm) {
-  //       const lowerTerm = searchTerm.toLowerCase();
-        
-  //       // Step A: Find matches
-  //       const matches = allPokemonList.filter(p => p.name.includes(lowerTerm));
-        
-  //       // Step B: Smart Sort (Starts With > Includes > Alphabetical)
-  //       matches.sort((a, b) => {
-  //           const aStarts = a.name.startsWith(lowerTerm);
-  //           const bStarts = b.name.startsWith(lowerTerm);
-  //           if (aStarts && !bStarts) return -1; // Priority to 'starts with'
-  //           if (!aStarts && bStarts) return 1;
-  //           return a.name.localeCompare(b.name); // Then alphabetical
-  //       });
-        
-  //       setFilteredList(matches);
-  //     } else if (selectedType) {
-  //       setLoading(true);
-  //       fetchPokemonByType(selectedType).then(list => {
-  //         setFilteredList(list);
-  //         setLoading(false);
-  //       });
-  //     }
-  //     setPage(0);
-  //   } else if (!showFavorites) {
-  //     // Reset to Global List if filters cleared
-  //     setFilteredList([]);
-  //     if(pokemons.length === 0) loadGlobalPage(0);
-  //   }
-  // }, [searchTerm, selectedType]);
-
   // 3. Handle Filters with DEBOUNCE (Optimization)
   useEffect(() => {
     // A. Define the logic we want to run
@@ -114,7 +78,7 @@ const Pokedex = () => {
         
         setFilteredList(matches);
         setPage(0);
-        setShowFavorites(false); // Ensure we aren't in favorites mode
+        setShowFavorites(false); 
       } 
       else if (selectedType) {
         // ... (Type logic remains the same, usually fast enough without debounce)
@@ -138,7 +102,6 @@ const Pokedex = () => {
     }, 300); // Wait 300ms after user stops typing
 
     // C. Cleanup Function (The Magic)
-    // If 'searchTerm' changes before 300ms, this clears the old timer!
     return () => clearTimeout(timeoutId);
 
   }, [searchTerm, selectedType, allPokemonList]); // Dependencies
