@@ -15,11 +15,9 @@ Before you begin, ensure you have the following installed on your computer:
 Open your terminal (Command Prompt, PowerShell, or Terminal) and run the following commands to download the code to your machine:
 
 ```bash
-git clone [https://github.com/YOUR_USERNAME/pokedex-lite.git](https://github.com/YOUR_USERNAME/pokedex-lite.git)
+git clone "https://github.com/Omprasad-BL/pokedex"
 cd pokedex-lite
 ````
-
-*(Note: Replace `YOUR_USERNAME` with your actual GitHub username if you have forked the repo, otherwise use the provided link).*
 
 -----
 
